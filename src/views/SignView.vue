@@ -46,7 +46,7 @@ import AppButton from '../components/AppButton.vue'
         </div>
 
         <div class="sub-holder">
-          <AppButton :text="dynamicTextBtn" @click="verify()"></AppButton>
+          <app-button :text="dynamicTextBtn" @click="verify()"></app-button>
         </div>
       </div>
     </div>

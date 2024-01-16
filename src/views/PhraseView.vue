@@ -1,27 +1,28 @@
 <script setup lang="ts">
 import AppTitle from '../components/AppTitle.vue'
 import AppNavigation from '../components/AppNavigation.vue'
+import AppCircledWord from '../components/AppCircledWord.vue'
 </script>
 
 <template>
   <div class="wrapper">
     <div class="sizer">
 
-      <AppNavigation></AppNavigation>
+      <app-navigation></app-navigation>
 
       <div class="card" id="card">
         <div class="card-body">
 
           <div class="card-left" id="left">
 
-            <AppTitle :text="dynamicText"></AppTitle>
+            <app-title :text="dynamicText"></app-title>
 
             <template v-for="(sentence, index) in phrases_divided" :key="index">
               <p class="card-text">
                 <template v-for="(word, index) in sentence.words" :key="index">
 
-                  <span v-if="sentence.selected?.hasOwnProperty(word)" :data-tooltip="getSecondValue(sentence.selected[word])"> <!--ZAKRÚŽKOVANÉ-->
-                    <span class="circle-sketch-highlight" id="phrase" @click="handleClick(sentence.selected[word])">{{ word }}</span>&#160;
+                  <span v-if="sentence.selected?.hasOwnProperty(word)" :data-tooltip="getSecondValue(sentence.selected[word])" @click="handleClick(sentence.selected[word])"> <!--ZAKRÚŽKOVANÉ-->
+                    <app-circled-word :word="word"></app-circled-word>
                   </span>
 
                   <span v-else class="realistic-marker-highlight" id="phrase">{{ word }}&#160;</span> <!--ZVÝRAZNENÉ-->
@@ -76,6 +77,7 @@ import { useGroupFormsStore } from "@/stores/phrase";
 export default {
   components: {
     AppTitle,
+    AppCircledWord
   },
   data() {
     // const vocabulary = useVocabularyStore(); keby som ponechala nevráti v cykle dĺžku lebo berie ako state nie ako pole
@@ -90,6 +92,8 @@ export default {
 
     const { $state: { groups_forms } } = useGroupFormsStore();
     const arrOfGroups = groups_forms;
+
+
 
     type Phrase = {
       sentence: string;
@@ -446,48 +450,9 @@ body {
   padding: 0 0.25em;
 }
 
-.circle-sketch-highlight {
-  position: relative;
-  cursor: pointer;
-}
 
 .p-group {
   margin-bottom: 0px;
-}
-
-.circle-sketch-highlight:before {
-  content: "";
-  z-index: -1;
-  left: -0.5em;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #ffcff1 |;
-  position: absolute;
-  border-right-color: transparent;
-  width: 100%;
-  height: 1em;
-  transform: rotate(2deg);
-  opacity: 0.7;
-  border-radius: 50%;
-  padding: 0.25em;
-}
-
-.circle-sketch-highlight:after {
-  content: "";
-  z-index: -1;
-  left: -0.5em;
-  padding: 0.25em;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #ffcff1 |;
-  border-left-color: transparent;
-  border-top-color: transparent;
-  position: absolute;
-  width: 100%;
-  height: 1em;
-  transform: rotate(-1deg);
-  opacity: 0.7;
-  border-radius: 50%;
 }
 
 .circle-sketch-highlight2 {

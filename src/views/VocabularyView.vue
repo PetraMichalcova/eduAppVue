@@ -8,13 +8,13 @@ import AppButton from '../components/AppButton.vue'
   <div class="wrapper"> 
   <div class="sizer">
 
-     <AppNavigation></AppNavigation>
+     <app-navigation></app-navigation>
 
     <div class="holder">
 
       <div class="container1"> <!--OBRAZKY ZVIERATIEK-->
        
-        <AppTitle :text="dynamicText"></AppTitle>
+        <app-title :text="dynamicText"></app-title>
 
         <div class="row">
           <div v-for="(pair, pairIndex) in shownImages" :key="pairIndex" class="col-md-4"> <!-- stĺpec obrázkov / pair obsahuje img a text-->
@@ -45,15 +45,15 @@ import AppButton from '../components/AppButton.vue'
 
       <div class="container3"> <!--TLAČÍTKA S POPISOM-->
 
-       <AppButton :text="dynamicTextBtn1" @click="reset()"></AppButton>
-       <AppButton :text="dynamicTextBtn2" @click="shuffle()"></AppButton>
+       <app-button :text="dynamicTextBtn1" @click="reset()"></app-button>
+       <app-button :text="dynamicTextBtn2" @click="shuffle()"></app-button>
 
         <div class="description">
 
-          <p id="info"><span class="circle-sketch-highlight">VIOLET</span>&#160;</p>
+          <p id="info"><span class="circle-sketch-highlight2">VIOLET</span>&#160;</p>
           <p id="info">means you chose</p>
 
-          <p id="info"><span class="circle-sketch-highlight2">GREEN</span>&#160;</p>
+          <p id="info"><span class="circle-sketch-highlight">GREEN</span>&#160;</p>
 
           <p id="info">means MATCH</p>
         </div>

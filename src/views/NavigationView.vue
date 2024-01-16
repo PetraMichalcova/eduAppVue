@@ -1,29 +1,22 @@
+<script setup lang="ts">
+import AppNavigationButton from '../components/AppNavigationButton.vue'
+</script>
+
+
 <template>
   <div class="holder">
     <div class="cont">
 
       <router-link :to="{ name: 'vocabulary', params: { topic: 'vocabulary', topicID: topicID } }">
-        <div class="d1" id="d1">
-          <div class="d1-sub">
-            <h5>VOCABULARY</h5>
-          </div>
-        </div>
+        <app-navigation-button :title="title1"></app-navigation-button>
       </router-link>
 
       <router-link :to="{ name: 'exercise', params: { topic: 'exercise', topicID: topicID } }">
-        <div class="d2" id="d2">
-          <div class="d2-sub">
-            <h5>EXERCISE</h5>
-          </div>
-        </div>
+        <app-navigation-button :title="title3"></app-navigation-button>
       </router-link>
 
       <router-link :to="{ name: 'conversation', params: { topic: 'conversation', topicID: topicID } }">
-        <div class="d3" id="d3">
-          <div class="d3-sub">
-            <h5>CONVERSATION</h5>
-          </div>
-        </div>
+      <app-navigation-button :title="title2"></app-navigation-button>
       </router-link>
 
       <div class="d4" id="d4">
@@ -36,10 +29,16 @@
 </template>
 
 <script lang="ts">
-export default {
+export default { 
+  components: {
+    AppNavigationButton,
+  },
   data() {
     return {
-      topicID: "1234"
+      topicID: "1234",
+      title1: "VOCABULARY",
+      title2: "CONVERSATION",
+      title3: "EXERCISE"
     };
   }
 };
@@ -96,10 +95,6 @@ h2 {
   align-items: center;
 }
 
-
-.d1,
-.d2,
-.d3,
 .d4 {
   display: flex;
   justify-content: center;
